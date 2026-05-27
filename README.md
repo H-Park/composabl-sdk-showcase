@@ -46,14 +46,14 @@ All six agents solve the same CSTR control problem. Each pattern builds on the l
 
 | # | Pattern | Tech | Conversion |
 |---|---|---|---|
-| 1 | [Single-skill DRL](./2_learn/chemical_process_control/agents/deep_reinforcement_learning/) | Ray / RLlib | **90%** |
-| 2 | [Single-skill MPC (baseline)](./2_learn/chemical_process_control/agents/model_predictive_control_benchmark/) | do_mpc + CasADi | **82%** |
-| 3 | [Strategy — learned selector](./2_learn/chemical_process_control/agents/strategy_pattern/) | DRL × 4 | **93%** |
-| 4 | [Strategy — programmed selector](./2_learn/chemical_process_control/agents/strategy_pattern_programmed_selector/) | DRL × 3 + Python logic | **93%** |
-| 5 | [Strategy + ML perceptor](./2_learn/chemical_process_control/agents/strategy_pattern_with_perceptor/) | DRL × 4 + sklearn | **~93% + safety** |
-| 6 | [Plan-Execute](./2_learn/chemical_process_control/agents/plan_execute_pattern/) | DRL + MPC | **95%** |
+| 1 | [Single-skill DRL](./chemical_process_control/agents/deep_reinforcement_learning/) | Ray / RLlib | **90%** |
+| 2 | [Single-skill MPC (baseline)](./chemical_process_control/agents/model_predictive_control_benchmark/) | do_mpc + CasADi | **82%** |
+| 3 | [Strategy — learned selector](./chemical_process_control/agents/strategy_pattern/) | DRL × 4 | **93%** |
+| 4 | [Strategy — programmed selector](./chemical_process_control/agents/strategy_pattern_programmed_selector/) | DRL × 3 + Python logic | **93%** |
+| 5 | [Strategy + ML perceptor](./chemical_process_control/agents/strategy_pattern_with_perceptor/) | DRL × 4 + sklearn | **~93% + safety** |
+| 6 | [Plan-Execute](./chemical_process_control/agents/plan_execute_pattern/) | DRL + MPC | **95%** |
 
-![Benchmarks](./2_learn/chemical_process_control/agents/benchmark_agents.png)
+![Benchmarks](./chemical_process_control/agents/benchmark_agents.png)
 
 ---
 
@@ -70,14 +70,14 @@ docker run --rm -it -p 1337:1337 composabl/sim-cstr
 No training needed for the MPC baseline — run inference immediately:
 
 ```bash
-cd 2_learn/chemical_process_control/agents/model_predictive_control_benchmark
+cd chemical_process_control/agents/model_predictive_control_benchmark
 python agent_inference.py
 ```
 
 To train and run the best-performing agent:
 
 ```bash
-cd 2_learn/chemical_process_control/agents/plan_execute_pattern
+cd chemical_process_control/agents/plan_execute_pattern
 python agent.py          # trains the DRL planning skill
 python agent_inference.py
 ```
@@ -89,7 +89,7 @@ All other agents also ship with pre-trained checkpoints so you can run inference
 ## Repository layout
 
 ```
-2_learn/chemical_process_control/
+chemical_process_control/
 ├── sim/                                      # Dockerized gRPC CSTR simulator (scipy ODEs)
 └── agents/
     ├── sensors.py                            # shared Sensor definitions
