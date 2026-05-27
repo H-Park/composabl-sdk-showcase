@@ -1,6 +1,6 @@
-# Composabl SDK — Agent Design Pattern Showcase
+# Amesa SDK — Agent Design Pattern Showcase
 
-A collection of industrial agents built with the **Composabl SDK** — a Python framework for composing intelligent agents from any combination of deep reinforcement learning, model predictive control, classical algorithms, and machine learning models.
+A collection of industrial agents built with the **Amesa SDK** — a Python framework for composing intelligent agents from any combination of deep reinforcement learning, model predictive control, classical algorithms, and machine learning models.
 
 The use case is an industrial CSTR (Continuous Stirred Tank Reactor) — an exothermic A→B chemical reaction with a single actuator (jacket coolant temperature), two sensors (reactor temperature, product concentration), and a thermal runaway risk above 400 K. Six progressively sophisticated agent designs solve the same control problem. Each design adds a new SDK capability and the benchmark numbers tell the story.
 
@@ -57,32 +57,43 @@ All six agents solve the same CSTR control problem. Each pattern builds on the l
 
 ---
 
-## Quick start
+## Running the examples
+
+### License
+
+The `composabl` package requires a license key issued by Amesa. Set it as an environment variable before running any agent:
 
 ```bash
-pip install composabl
+export COMPOSABL_LICENSE=<your_license_key>
+```
 
-# Start the simulator
+If you don't have a license key, the agent code, teacher implementations, controller logic, and pre-trained checkpoints are all fully readable in this repository. The six pattern READMEs walk through each design in detail, including the full source for every key abstraction.
+
+### Simulator
+
+All agents train and run against a Dockerized gRPC simulator:
+
+```bash
 docker pull composabl/sim-cstr
 docker run --rm -it -p 1337:1337 composabl/sim-cstr
 ```
 
-No training needed for the MPC baseline — run inference immediately:
+### Run the MPC baseline (no training required)
 
 ```bash
 cd chemical_process_control/agents/model_predictive_control_benchmark
 python agent_inference.py
 ```
 
-To train and run the best-performing agent:
+### Train and run the best-performing agent
 
 ```bash
 cd chemical_process_control/agents/plan_execute_pattern
-python agent.py          # trains the DRL planning skill
+python agent.py            # trains the DRL planning skill
 python agent_inference.py
 ```
 
-All other agents also ship with pre-trained checkpoints so you can run inference on any of them without training.
+All agents ship with pre-trained checkpoints — inference can be run on any of them without re-training.
 
 ---
 
